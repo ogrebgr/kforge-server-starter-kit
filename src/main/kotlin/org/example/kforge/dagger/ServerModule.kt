@@ -6,9 +6,9 @@ import com.google.gson.Gson
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import org.example.kforge.misc.InternalServerErrorResponse
 import org.example.kforge.misc.TimeProvider
 import org.example.kforge.misc.TimeProviderImpl
-import org.example.kforge.modules.main.InternalServerErrorResponse
 import javax.inject.Qualifier
 
 

@@ -1,4 +1,4 @@
-package org.example.kforge.modules.main
+package org.example.kforge.misc
 
 import com.bolyartech.forge.server.response.Response
 import com.bolyartech.forge.server.response.ResponseException
