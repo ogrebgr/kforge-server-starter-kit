@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory
 import java.io.File
 import kotlin.system.exitProcess
 
-internal var logger: org.slf4j.Logger = LoggerFactory.getLogger("com.bolyartech.totoproverka3.server")
+internal var logger: org.slf4j.Logger = LoggerFactory.getLogger("org.example.kforge.server")
 
 fun main(args: Array<String>) {
     val cmd: CommandLine = parseCommandLine(args)
