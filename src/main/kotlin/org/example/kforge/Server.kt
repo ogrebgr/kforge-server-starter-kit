@@ -18,15 +18,22 @@ class Server @Inject constructor(
 ) {
     private lateinit var forgeJetty: ForgeJetty
 
-    fun start(jettyConfig: ForgeJettyConfiguration) {
-        forgeJetty = ForgeJetty(jettyConfig, createMainServlet())
+    fun start(
+        jettyConfig: ForgeJettyConfiguration,
+        isPathInfoEnabled: Boolean,
+        maxPathSegments: Int
+    ) {
+        forgeJetty = ForgeJetty(jettyConfig, createMainServlet(isPathInfoEnabled, maxPathSegments))
         forgeJetty.start()
     }
 
-    private fun createMainServlet(): HttpServlet {
+    private fun createMainServlet(
+        isPathInfoEnabled: Boolean,
+        maxPathSegments: Int
+    ): HttpServlet {
         val modules = ArrayList<HttpModule>()
         modules.add(mainModule)
 
-        return MainServlet(modules, notFoundHandler, internalServerError)
+        return MainServlet(modules, isPathInfoEnabled, maxPathSegments, notFoundHandler, internalServerError)
     }
 }

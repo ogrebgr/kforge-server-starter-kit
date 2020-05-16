@@ -18,9 +18,11 @@ import org.slf4j.LoggerFactory
 import java.io.File
 import kotlin.system.exitProcess
 
-internal var logger: org.slf4j.Logger = LoggerFactory.getLogger("org.example.kforge.server")
 
 fun main(args: Array<String>) {
+    var logger: org.slf4j.Logger = LoggerFactory.getLogger("pvpzone")
+
+//    Class.forName("org.postgresql.Driver")
     val cmd: CommandLine = parseCommandLine(args)
 
     var jettyConfigPath = cmd.getOptionValue("config-file")
@@ -57,7 +59,7 @@ fun main(args: Array<String>) {
             .serverModule(ServerModule(forgeConf.staticFilesDir)).build().provideServer()
 
         initLog(configDir, forgeConf.serverLogName)
-        server.start(conf)
+        server.start(conf, forgeConf.isPathInfoEnabled, forgeConf.maxSlashesInPathInfo)
     } else {
         logger.error("No configuration. Aborting.")
     }
@@ -76,6 +78,8 @@ fun createCliArgOptions(): Options {
 }
 
 private fun initLog(configDir: String, logFilenamePrefix: String = "", serverNameSuffix: String = "") {
+    var logger: org.slf4j.Logger = LoggerFactory.getLogger("pvpzone")
+
     val context = LoggerFactory.getILoggerFactory() as LoggerContext
     val jc = JoranConfigurator()
     jc.context = context
